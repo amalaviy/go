@@ -1209,6 +1209,7 @@ func (c *Conn) ConnectionState() ConnectionState {
 
 	var state ConnectionState
 	state.HandshakeComplete = c.handshakeComplete
+	state.ServerName = c.serverName
 	if c.handshakeComplete {
 		state.Version = c.vers
 		state.NegotiatedProtocol = c.clientProtocol
@@ -1217,7 +1218,6 @@ func (c *Conn) ConnectionState() ConnectionState {
 		state.CipherSuite = c.cipherSuite
 		state.PeerCertificates = c.peerCertificates
 		state.VerifiedChains = c.verifiedChains
-		state.ServerName = c.serverName
 		state.SignedCertificateTimestamps = c.scts
 		state.OCSPResponse = c.ocspResponse
 		if !c.didResume {
